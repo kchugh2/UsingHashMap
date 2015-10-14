@@ -2,6 +2,13 @@ package newpackage;
 
 import java.util.*;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class hashmapIntro {
 	static HashMap < Integer, String> intmap = new HashMap<Integer ,String>();
 	
@@ -36,5 +43,26 @@ public class hashmapIntro {
 		
 		
 	}while(!cont.equals("n"));
+		
+		 //writing keys and values to a file
+	    System.out.println("writing keys and values to a file");
+	    String filename = (System.getProperty("user.dir") + File.separatorChar +"Integervalue.txt");
+		System.out.println(filename);
+	        
+	    PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(new File(filename));
+		} catch (FileNotFoundException e) {
+			System.out.println("File does not exist!");
+		}
+		
+		//print both the key and the value on same line
+		// for each key in the key set write the key, a tab and the value
+		for (int key : intmap.keySet()) {
+			System.out.println("write this line: " + key);
+	    	writer.println(key + "\t" + intmap.get(key));
+	    }
+		writer.close();
+	    
 }
 }
